@@ -47,8 +47,7 @@ class Handler extends ExceptionHandler
     {
         // This will replace our 404 response with
         // a JSON response.
-        if ($exception instanceof ModelNotFoundException &&
-            $request->wantsJson()) {
+        if ($exception instanceof ModelNotFoundException) {
             return response()->json([
                 'error' => 'Resource not found'
             ], 404);
@@ -69,6 +68,5 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest(route('login'));
     }
 }
